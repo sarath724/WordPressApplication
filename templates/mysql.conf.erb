@@ -1,0 +1,13 @@
+UPDATE mysql.user SET Password=PASSWORD('<%= node['webmd-wordpress']['mysql_password'] %>') WHERE User='<%= node['webmd-wordpress']['mysql_user'] %>';
+
+
+FLUSH PRIVILEGES;
+
+CREATE DATABASE ti;
+
+CREATE USER tidb@localhost IDENTIFIED BY 'tidb';
+
+GRANT ALL PRIVILEGES ON ti.* TO tidb@localhost IDENTIFIED BY 'tidb';
+
+FLUSH PRIVILEGES;
+
